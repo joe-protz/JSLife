@@ -11,26 +11,31 @@ class Cell {
   getNeighbors() {
     // The formula to find a vector and a one dimensional array is X plus Y times columns 
 
-    // THIS IS NOT RIGHT
     this.neighbors = [
-      cells[(((this.x - scale) + (this.y - scale)) * (width / scale))],
+      cells[(this.x - scale) / scale + ((this.y - scale) / scale) * (width / scale)],
 
-      cells[((this.x + (this.y - scale)) * (width / scale))],
+      cells[this.x / scale + ((this.y - scale) / scale) * (width / scale)],
+      // this one is bugging
+      cells[((this.x + scale) / scale) + ((this.y - scale) / scale) * (width / scale)],
 
-      cells[(((this.x + scale) + (this.y - scale)) * (width / scale))],
+      cells[(this.x - scale) / scale + (this.y / scale) * (width / scale)],
 
-      cells[(((this.x - scale) + this.y) * (width / scale))],
+      cells[(this.x + scale) / scale + (this.y / scale) * (width / scale)],
 
-      cells[(((this.x + scale) + this.y) * (width / scale))],
+      cells[(this.x - scale) / scale + ((this.y + scale) / scale) * (width / scale)],
 
-      cells[(((this.x - scale) + (this.y + scale)) * (width / scale))],
+      cells[this.x / scale + ((this.y + scale) / scale) * (width / scale)],
 
-      cells[((this.x + (this.y + scale)) * (width / scale))],
-      cells[(((this.x + scale) + (this.y + scale)) * (width / scale))],
+      cells[(this.x + scale) / scale + ((this.y + scale) / scale) * (width / scale)],
 
 
     ]
-    console.log(this.neighbors)
+    this.aliveNeighbors = []
+    for (let i = 0; i < this.neighbors.length; i++) {
+      if (this.neighbors[i] !== undefined && this.neighbors[i].alive) {
+        this.aliveNeighbors.push(this.neighbors[i])
+      }
+    }
   }
   // just changes alive state
   click() {
