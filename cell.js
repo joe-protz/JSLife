@@ -6,15 +6,21 @@ class Cell {
     this.scale = scale
     this.x = x
     this.y = y
-
   }
 
-  // update = function () {
+  // update () {
 
   // }
+  click() {
+    this.alive = true
+  }
 
   show() {
-    fill(255)
+    if (this.alive) {
+      fill(0, 255, 0)
+    } else {
+      fill(255, 0, 0)
+    }
     rect(this.x, this.y, scale, scale)
   }
 }
