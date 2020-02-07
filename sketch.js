@@ -1,9 +1,11 @@
 // holds all cells for the board
 let cells = []
+let coordArray = []
 // scale to make the cells larger/smaller
 let scale = 100
 // have I clicked start?
 let start = false
+let arrMap
 
 function setup() {
 
@@ -21,6 +23,7 @@ function setup() {
 
     }
   }
+  arrMap = cells.map(cell => cell)
 }
 // continuously loops @ framerate
 function draw() {
