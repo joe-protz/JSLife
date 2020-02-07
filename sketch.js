@@ -11,7 +11,7 @@ let arrMap // a copy of cells , used to make coordArray
 
 
 function setup() {
-
+  frameRate(3)
 
   createCanvas(500, 500);
 
