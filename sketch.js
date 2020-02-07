@@ -14,6 +14,17 @@ function setup() {
 
   frameRate(30)
   createCanvas(600, 600);
+  resetButton = createButton('reset')
+  resetButton.position(30, height + 10)
+  resetButton.size(80);
+  resetButton.mousePressed(() => {
+    noLoop()
+    cells = []
+    start = false
+    setup()
+    loop()
+  })
+
   randomButton = createButton('random')
   randomButton.position(30, height + 50)
   randomButton.size(80);
