@@ -3,7 +3,7 @@ let cells = []
 //may use at a later date, holds 2d array of cells
 let coordArray = []
 // scale to make the cells larger/smaller
-let scale = 10
+let scale = 5
 // have I clicked start?
 let start = false
 let arrMap // a copy of cells , used to make coordArray
@@ -12,8 +12,28 @@ let arrMap // a copy of cells , used to make coordArray
 
 function setup() {
 
-  frameRate(30)
-  createCanvas(600, 600);
+
+  createCanvas(500, 500);
+
+  acornButton = createButton('acorn')
+  acornButton.position(110, height + 10)
+  acornButton.size(80);
+  acornButton.mousePressed(() => {
+    let acorns = [
+      cells[6164],
+      cells[6163],
+      cells[6162],
+      cells[6061],
+      cells[5959],
+      cells[6159],
+      cells[6158]
+    ]
+    acorns.forEach(acorn => {
+      acorn.alive = true
+      acorn.hasBeenChanged = true
+    })
+  })
+
   resetButton = createButton('reset')
   resetButton.position(30, height + 10)
   resetButton.size(80);
@@ -31,9 +51,10 @@ function setup() {
   // randoms the game
   randomButton.mousePressed(() => {
     cells.forEach(cell => {
-      if (random([true, false]))
+      if (random() < .3) {
         cell.alive = true
-      cell.hasBeenChanged = true
+        cell.hasBeenChanged = true
+      }
     })
   })
   startButton = createButton('start');
@@ -82,6 +103,7 @@ function draw() {
 
   // loop for once the game is setup and startButton has been pressed
   if (start) {
+
     // create an aliveNeighbors array , we get the alive neighbors BEFORE checking so that we don't mess with the results before checking each one
     cells.forEach((cell, index) => {
       cells[index].getAliveNeighbors()
