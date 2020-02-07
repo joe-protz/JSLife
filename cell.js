@@ -93,7 +93,6 @@ class Cell {
     if (dist(mouseX - scale / 2, mouseY - scale / 2, this.x, this.y) < scale / 2) {
     this.alive = true
     this.hasBeenChanged = true
-    console.log(this)
     }
   }
   // shows a rectangle (square) at the location and red if dead, green if alive
