@@ -7,13 +7,17 @@ let scale = 5
 // have I clicked start?
 let start = false
 let arrMap // a copy of cells , used to make coordArray
-
+let randomValue
 
 
 function setup() {
   frameRate(3)
+  textSize(50)
+
 
   createCanvas(500, 500);
+
+
 
   acornButton = createButton('acorn')
   acornButton.position(110, height + 10)
@@ -35,30 +39,36 @@ function setup() {
   })
 
   resetButton = createButton('reset')
-  resetButton.position(30, height + 10)
+  resetButton.position(30, height + 50)
   resetButton.size(80);
   resetButton.mousePressed(() => {
     noLoop()
+    randomSlider.remove()
     cells = []
     start = false
     setup()
     loop()
   })
 
+  randomSlider = createSlider(.1, .9, .3, .1);
+  randomSlider.position(110, height + 30);
+  randomSlider.style('width', '80px');
+
+
   randomButton = createButton('random')
-  randomButton.position(30, height + 50)
+  randomButton.position(30, height + 30)
   randomButton.size(80);
   // randoms the game
   randomButton.mousePressed(() => {
     cells.forEach(cell => {
-      if (random() < .3) {
+      if (random() < randomValue) {
         cell.alive = true
         cell.hasBeenChanged = true
       }
     })
   })
   startButton = createButton('start');
-  startButton.position(30, height + 30)
+  startButton.position(30, height + 10)
   startButton.size(80);
   // starts the game
   startButton.mousePressed(() => start = true)
@@ -93,7 +103,7 @@ function mouseClicked() {
 
 // continuously loops @ framerate
 function draw() {
-
+  randomValue = randomSlider.value()
   background(62)
   // loop for setting game up
   if (!start) {
