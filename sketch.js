@@ -3,7 +3,7 @@ let cells = []
 //may use at a later date, holds 2d array of cells
 let coordArray = []
 // scale to make the cells larger/smaller
-let scale = 50
+let scale = 10
 // have I clicked start?
 let start = false
 let arrMap // a copy of cells , used to make coordArray
@@ -12,8 +12,8 @@ let arrMap // a copy of cells , used to make coordArray
 
 function setup() {
 
-  frameRate(5)
-  createCanvas(500, 500);
+  frameRate(30)
+  createCanvas(800, 800);
 
   button = createButton('start');
   button.position(30, height + 30);
@@ -45,6 +45,7 @@ function draw() {
       if (mouseIsPressed) {
         if (dist(mouseX - scale / 2, mouseY - scale / 2, cells[index].x, cells[index].y) < scale / 2) {
           cells[index].click()
+          cells[index].hasBeenChanged = true
         }
       }
       //show all cells 
@@ -63,13 +64,16 @@ function draw() {
       if (cell.alive) {
         if (cell.aliveNeighbors.length < 2) {
           cell.alive = false
+          cell.hasBeenChanged = true
         }
         if (cell.aliveNeighbors.length > 3) {
           cell.alive = false
+          cell.hasBeenChanged = true
         }
       } else {
         if (cell.aliveNeighbors.length === 3) {
           cell.alive = true
+          cell.hasBeenChanged = true
         }
       }
       cell.show()

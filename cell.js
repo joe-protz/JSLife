@@ -8,6 +8,7 @@ class Cell {
     this.y = y
     this.neighbors = []
     this.aliveNeighbors = []
+    this.hasBeenChanged = false
     if (this.x === 0) {
       this.touchesLeft = true
     }
@@ -93,9 +94,11 @@ class Cell {
   }
   // shows a rectangle (square) at the location and red if dead, green if alive
   show() {
-    if (this.alive) {
+    if (!this.hasBeenChanged) {
+      fill(0,0,255)
+    } else if (this.alive) {
       fill(0, 255, 0)
-    } else {
+    } else  if (!this.alive) {
       fill(255, 0, 0)
     }
     // starts at top left corner of rect of size scale on each side
