@@ -90,7 +90,10 @@ class Cell {
   }
   // just changes alive state during setup if we click on a cell
   click() {
+    if (dist(mouseX - scale / 2, mouseY - scale / 2, this.x, this.y) < scale / 2) {
     this.alive = true
+    this.hasBeenChanged = true
+    }
   }
   // shows a rectangle (square) at the location and red if dead, green if alive
   show() {

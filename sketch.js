@@ -13,12 +13,23 @@ let arrMap // a copy of cells , used to make coordArray
 function setup() {
 
   frameRate(30)
-  createCanvas(800, 800);
-
-  button = createButton('start');
-  button.position(30, height + 30);
+  createCanvas(600, 600);
+  randomButton = createButton('random')
+  randomButton.position(30, height + 50)
+  randomButton.size(80);
+  // randoms the game
+  randomButton.mousePressed(() => {
+    cells.forEach(cell => {
+      if (random([true, false]))
+        cell.alive = true
+      cell.hasBeenChanged = true
+    })
+  })
+  startButton = createButton('start');
+  startButton.position(30, height + 30)
+  startButton.size(80);
   // starts the game
-  button.mousePressed(() => start = true)
+  startButton.mousePressed(() => start = true)
   // creates new cells for the board and pushes them into cells in order of creation
   for (let i = 0; i < (width / scale); i++) {
     for (let j = 0; j < (height / scale); j++) {
@@ -33,27 +44,32 @@ function setup() {
   arrMap = cells.map(cell => cell)
   while (arrMap.length) coordArray.push(arrMap.splice(0, width / scale))
 }
+
+function mouseDragged() {
+  cells.forEach((cell, index) => {
+    // when a pressed mouse is over a cell, change it to alive
+    cells[index].click()
+  })
+}
+
+function mouseClicked() {
+  cells.forEach((cell, index) => {
+    // when a pressed mouse is over a cell, change it to alive
+    cells[index].click()
+  })
+}
+
 // continuously loops @ framerate
 function draw() {
 
   background(62)
   // loop for setting game up
   if (!start) {
+    cells.forEach(cell => cell.show())
 
-    cells.forEach((cell, index) => {
-      // when a pressed mouse is over a cell, change it to alive
-      if (mouseIsPressed) {
-        if (dist(mouseX - scale / 2, mouseY - scale / 2, cells[index].x, cells[index].y) < scale / 2) {
-          cells[index].click()
-          cells[index].hasBeenChanged = true
-        }
-      }
-      //show all cells 
-      cells[index].show()
-    })
   }
 
-  // loop for once the game is setup and button has been pressed
+  // loop for once the game is setup and startButton has been pressed
   if (start) {
     // create an aliveNeighbors array , we get the alive neighbors BEFORE checking so that we don't mess with the results before checking each one
     cells.forEach((cell, index) => {
