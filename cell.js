@@ -23,63 +23,80 @@ class Cell {
     }
   }
 
-
-
-
   // have count of alive this.neighbors that must be equal to 2 or 3 to stay alive or if 3 live this.neighbors will come alive
   getNeighbors() {
-    // The formula to find a vector and a one dimensional array is X plus Y times columns 
+    // The formula to find a vector and a one dimensional array is X plus Y times columns
     // we fall back to its neighbor being undefined if we would be checking off of the grid
     if (this.touchesTop || this.touchesLeft) {
       this.neighbors[0] = undefined
     } else {
-      this.neighbors[0] = cells[(this.x - scale) / scale + ((this.y - scale) / scale) * (width / scale)]
+      this.neighbors[0] =
+        cells[
+          (this.x - scale) / scale +
+            ((this.y - scale) / scale) * (width / scale)
+        ]
     }
 
     if (this.touchesTop) {
       this.neighbors[1] = undefined
     } else {
-      this.neighbors[1] = cells[this.x / scale + ((this.y - scale) / scale) * (width / scale)]
+      this.neighbors[1] =
+        cells[this.x / scale + ((this.y - scale) / scale) * (width / scale)]
     }
 
     if (this.touchesTop || this.touchesRight) {
       this.neighbors[2] = undefined
     } else {
-      this.neighbors[2] = cells[((this.x + scale) / scale) + ((this.y - scale) / scale) * (width / scale)]
+      this.neighbors[2] =
+        cells[
+          (this.x + scale) / scale +
+            ((this.y - scale) / scale) * (width / scale)
+        ]
     }
 
     if (this.touchesLeft) {
       this.neighbors[3] = undefined
     } else {
-      this.neighbors[3] = cells[(this.x - scale) / scale + (this.y / scale) * (width / scale)]
+      this.neighbors[3] =
+        cells[(this.x - scale) / scale + (this.y / scale) * (width / scale)]
     }
 
     if (this.touchesRight) {
       this.neighbors[4] = undefined
     } else {
-      this.neighbors[4] = cells[(this.x + scale) / scale + (this.y / scale) * (width / scale)]
+      this.neighbors[4] =
+        cells[(this.x + scale) / scale + (this.y / scale) * (width / scale)]
     }
 
     if (this.touchesBottom || this.touchesLeft) {
       this.neighbors[5] = undefined
     } else {
-      this.neighbors[5] = cells[(this.x - scale) / scale + ((this.y + scale) / scale) * (width / scale)]
+      this.neighbors[5] =
+        cells[
+          (this.x - scale) / scale +
+            ((this.y + scale) / scale) * (width / scale)
+        ]
     }
 
     if (this.touchesBottom) {
       this.neighbors[6] = undefined
     } else {
-      this.neighbors[6] = cells[this.x / scale + ((this.y + scale) / scale) * (width / scale)]
+      this.neighbors[6] =
+        cells[this.x / scale + ((this.y + scale) / scale) * (width / scale)]
     }
 
     if (this.touchesBottom || this.touchesRight) {
       this.neighbors[7] = undefined
     } else {
-      this.neighbors[7] = cells[(this.x + scale) / scale + ((this.y + scale) / scale) * (width / scale)]
+      this.neighbors[7] =
+        cells[
+          (this.x + scale) / scale +
+            ((this.y + scale) / scale) * (width / scale)
+        ]
     }
   }
 
-  // empty the array and then loop through the neighbors and push the alive ones 
+  // empty the array and then loop through the neighbors and push the alive ones
   getAliveNeighbors() {
     this.aliveNeighbors = new Array()
     for (let i = 0; i < this.neighbors.length; i++) {
@@ -90,18 +107,21 @@ class Cell {
   }
   // just changes alive state during setup if we click on a cell
   click() {
-    if (dist(mouseX - scale / 2, mouseY - scale / 2, this.x, this.y) < scale / 2) {
-    this.alive = true
-    this.hasBeenChanged = true
+    if (
+      dist(mouseX - scale / 2, mouseY - scale / 2, this.x, this.y) <
+      scale / 2
+    ) {
+      this.alive = true
+      this.hasBeenChanged = true
     }
   }
   // shows a rectangle (square) at the location and red if dead, green if alive
   show() {
     if (!this.hasBeenChanged) {
-      fill(0,0,255)
+      fill(0, 0, 255)
     } else if (this.alive) {
       fill(0, 255, 0)
-    } else  if (!this.alive) {
+    } else if (!this.alive) {
       fill(255, 0, 0)
     }
     // starts at top left corner of rect of size scale on each side

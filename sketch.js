@@ -1,3 +1,4 @@
+let acornButton, randomSlider, resetButton, randomButton, startButton
 // holds all cells for the board
 let cells = []
 //may use at a later date, holds 2d array of cells
@@ -8,20 +9,10 @@ let scale = 5
 let start = false
 let arrMap // a copy of cells , used to make coordArray
 let randomValue
-
-
-function setup() {
-  frameRate(3)
-  textSize(50)
-
-
-  createCanvas(500, 500);
-
-
-
+const createAcornButton = () => {
   acornButton = createButton('acorn')
   acornButton.position(110, height + 10)
-  acornButton.size(80);
+  acornButton.size(80)
   acornButton.mousePressed(() => {
     let acorns = [
       cells[6164],
@@ -37,10 +28,11 @@ function setup() {
       acorn.hasBeenChanged = true
     })
   })
-
+}
+const createResetButton = () => {
   resetButton = createButton('reset')
   resetButton.position(30, height + 50)
-  resetButton.size(80);
+  resetButton.size(80)
   resetButton.mousePressed(() => {
     noLoop()
     randomSlider.remove()
@@ -49,15 +41,16 @@ function setup() {
     setup()
     loop()
   })
-
-  randomSlider = createSlider(.1, .9, .3, .1);
-  randomSlider.position(110, height + 30);
-  randomSlider.style('width', '80px');
-
-
+}
+const createRandomSlider = () => {
+  randomSlider = createSlider(0.1, 0.9, 0.3, 0.1)
+  randomSlider.position(110, height + 30)
+  randomSlider.style('width', '80px')
+}
+const createRandomButton = () => {
   randomButton = createButton('random')
   randomButton.position(30, height + 30)
-  randomButton.size(80);
+  randomButton.size(80)
   // randoms the game
   randomButton.mousePressed(() => {
     cells.forEach(cell => {
@@ -67,15 +60,33 @@ function setup() {
       }
     })
   })
-  startButton = createButton('start');
+}
+const createStartButton = () => {
+  startButton = createButton('start')
   startButton.position(30, height + 10)
-  startButton.size(80);
+  startButton.size(80)
   // starts the game
-  startButton.mousePressed(() => start = true)
+  startButton.mousePressed(() => (start = true))
+}
+const createPageElements = function() {
+  let args = Array.prototype.slice.call(arguments)
+  args.forEach(callback => callback())
+}
+function setup() {
+  textSize(50)
+  createCanvas(500, 500)
+  createPageElements(
+    createResetButton,
+    createRandomSlider,
+    createRandomButton,
+    createAcornButton,
+    createStartButton
+  )
+
   // creates new cells for the board and pushes them into cells in order of creation
-  for (let i = 0; i < (width / scale); i++) {
-    for (let j = 0; j < (height / scale); j++) {
-      cells.push(new Cell(j * scale, i * scale, scale))
+  for (let i = 0; i < width / scale; i++) {
+    for (let j = 0; j < height / scale; j++) {
+      cells.push(new Cell(j * scale, i * scale))
     }
   }
   // initiate the cells neighbors array so they all know their neighbors
@@ -108,12 +119,10 @@ function draw() {
   // loop for setting game up
   if (!start) {
     cells.forEach(cell => cell.show())
-
   }
 
   // loop for once the game is setup and startButton has been pressed
   if (start) {
-
     // create an aliveNeighbors array , we get the alive neighbors BEFORE checking so that we don't mess with the results before checking each one
     cells.forEach((cell, index) => {
       cells[index].getAliveNeighbors()
