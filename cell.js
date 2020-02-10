@@ -34,7 +34,6 @@ class Cell {
       dist(mouseX - scale / 2, mouseY - scale / 2, this.x, this.y) <
       scale / 2
     ) {
-      console.log(this)
       this.alive = 1
       this.hasBeenChanged = true
     }
