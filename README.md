@@ -1,4 +1,4 @@
-# Web-Based Shopping List
+# JavaScript-based Visualization of Conway's Game of Life
 
 ## Important Links
 
