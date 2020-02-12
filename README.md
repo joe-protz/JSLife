@@ -3,7 +3,8 @@
 ## Important Links
 
 - [Deployed Client](https://joe-protz.github.io/JSLife/)
-- [GitHub](https://joe-protz.github.io/)
+- [GitHub](https://www.github.com/joe-protz)
+- [Portfolio](https://joe-protz.github.io/#)
 - [LinkedIn](https://www.linkedin.com/in/joe-protz/)
 - [p5.js](https://p5js.org/)
 

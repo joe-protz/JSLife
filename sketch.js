@@ -34,7 +34,7 @@ const createAcornButton = () => {
 }
 const createResetButton = () => {
   resetButton = createButton('reset')
-  resetButton.position(width-500, height + 50)
+  resetButton.position(width - 500, height + 50)
   resetButton.size(80)
   resetButton.mousePressed(() => {
     //noLoop()
@@ -47,12 +47,12 @@ const createResetButton = () => {
 }
 const createRandomSlider = () => {
   randomSlider = createSlider(0.1, 0.9, 0.3, 0.05)
-  randomSlider.position(width-400, height + 30)
+  randomSlider.position(width - 400, height + 30)
   randomSlider.style('width', '80px')
 }
 const createRandomButton = () => {
   randomButton = createButton('random')
-  randomButton.position(width-500, height + 30)
+  randomButton.position(width - 500, height + 30)
   randomButton.size(80)
   // randoms the game
   randomButton.mousePressed(() => {
@@ -68,7 +68,7 @@ const createRandomButton = () => {
 }
 const createStartButton = () => {
   startButton = createButton('start')
-  startButton.position(width-500, height + 10)
+  startButton.position(width - 500, height + 10)
   startButton.size(80)
   // starts the game
   startButton.mousePressed(() => (start = true))
@@ -79,7 +79,7 @@ const createPageElements = function() {
 }
 const createGunButton = () => {
   gunButton = createButton('gun')
-  gunButton.position(width-400, height + 50)
+  gunButton.position(width - 400, height + 50)
   gunButton.size(80)
   gunButton.mousePressed(() => {
     let guns = [
