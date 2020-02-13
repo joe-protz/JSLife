@@ -14,7 +14,8 @@ let randomValue
 
 const createAcornButton = () => {
   acornButton = createButton('acorn')
-  acornButton.position(170, 210)
+  acornButton.parent('positioning2')
+  acornButton.style('position:relative;')
   acornButton.size(80)
   acornButton.mousePressed(() => {
     let acorns = [
@@ -34,7 +35,8 @@ const createAcornButton = () => {
 }
 const createResetButton = () => {
   resetButton = createButton('reset')
-  resetButton.position(70, 250)
+  resetButton.parent('positioning')
+  resetButton.style('position:relative;')
   resetButton.size(80)
   resetButton.mousePressed(() => {
     //noLoop()
@@ -47,12 +49,14 @@ const createResetButton = () => {
 }
 const createRandomSlider = () => {
   randomSlider = createSlider(0.1, 0.9, 0.3, 0.05)
-  randomSlider.position(170, 230)
+  randomSlider.parent('positioning2')
+  randomSlider.style('position:relative;')
   randomSlider.style('width', '80px')
 }
 const createRandomButton = () => {
   randomButton = createButton('random')
-  randomButton.position(70, 230)
+  randomButton.parent('positioning2')
+  randomButton.style('position:relative;')
   randomButton.size(80)
   // randoms the game
   randomButton.mousePressed(() => {
@@ -68,7 +72,8 @@ const createRandomButton = () => {
 }
 const createStartButton = () => {
   startButton = createButton('start')
-  startButton.position(70, 210)
+  startButton.parent('positioning')
+  startButton.style('position:relative;')
   startButton.size(80)
   // starts the game
   startButton.mousePressed(() => (start = true))
@@ -79,7 +84,8 @@ const createPageElements = function() {
 }
 const createGunButton = () => {
   gunButton = createButton('gun')
-  gunButton.position(170, 250)
+  gunButton.parent('positioning')
+  gunButton.style('position:relative;')
   gunButton.size(80)
   gunButton.mousePressed(() => {
     let guns = [
@@ -164,11 +170,11 @@ function setup() {
   cols = width / scale
   rows = height / scale
   createPageElements(
+    createStartButton,
     createResetButton,
     createRandomSlider,
     createRandomButton,
     createAcornButton,
-    createStartButton,
     createGunButton
   )
   resetSketch()

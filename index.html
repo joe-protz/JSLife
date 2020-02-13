@@ -13,6 +13,9 @@
       .canvas {
         text-align: center;
       }
+      ul{
+        list-style-type:none;
+      }
     </style>
     <script src="p5.js"></script>
     <script src="sketch.js"></script>
@@ -28,7 +31,7 @@
       cell interacts with its eight neighbours, which are the cells that are
       horizontally, vertically, or diagonally adjacent. At each step in time,
       the following transitions occur:
-      <ul> 
+      <ul > 
         <li>Any live cell with fewer than two live
       neighbours dies, as if by underpopulation. 
     </li>
@@ -43,6 +46,8 @@
       reproduction.
     </li>
     </ul>
+    <div id="positioning"></div>
+    <div id="positioning2"></div>
     </p>
   </body>
 </html>
